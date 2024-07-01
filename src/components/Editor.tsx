@@ -3,6 +3,22 @@ import { useReduxDispatch } from '../redux'
 import { get, update } from '../redux/surveys'
 import { SurveyCreator, SurveyCreatorComponent } from 'survey-creator-react'
 import 'survey-creator-core/survey-creator-core.css'
+import { setLicenseKey } from "survey-core";
+
+import { surveyLocalization } from 'survey-core';
+
+
+setLicenseKey(
+    "ZmMwMjUwOWUtMWZmOS00MjA0LWJkNWMtZDdkMjNiZmM4NjVlOzE9MjAyNS0wNy0wMQ=="
+);
+//
+
+// Get the English locale. To get the default locale, pass an empty string.
+const engLocale = surveyLocalization.locales["en"];
+// Override individual translations
+engLocale.pagePrevText = "Zrück";
+engLocale.pageNextText = "Weiter";
+
 
 const Editor = (params: { id: string }): React.ReactElement => {
     const dispatch = useReduxDispatch()

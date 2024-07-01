@@ -117,525 +117,287 @@ export const survey1Results = [
     {'Quality':{'affordable':'3','does what it claims':'2','better then others':'2','easy to use':'3'},'satisfaction':3,'suggestions':'better support','price to competitors':'Not sure','price':'high','pricelimit':{'mostamount':'60','leastamount':'10'}}
 ];
 
+
+// const surveyJson = {
+//   "elements": [{
+//     "type": "text",
+//     "name": "firstname"
+//     "title": {
+//       "default": "Enter your first name",
+//       "de": "Geben Sie Ihren Vornamen ein",
+//       "fr": "Entrez votre prénom"
+//     }
+//   }]
+// };
+// To apply your translations, set the current locale:
+
+// survey.locale = "de";
+
+
 export const survey2Json = {
   id: "2",
-  name: "Customer and their partner income survey",
-  json: {
-    completeText: "Finish",
-    pageNextText: "Continue",
-    pagePrevText: "Previous",
-    pages: [{
-      elements: [{
-        type: "panel",
-        elements: [{
-          type: "html",
-          name: "income_intro",
-          html:
-            "Income. In this section, you will be asked about your current employment status and other ways you and your partner receive income. It will be handy to have the following in front of you: payslip (for employment details), latest statement from any payments (from Centrelink or other authority), a current Centrelink Schedule for any account-based pension from super, annuities, or other income stream products that you may own. If you don't have a current one, you can get these schedules by contacting your income stream provider."
-        }],
-        name: "panel1"
-      }],
-      name: "page0"
-    }, {
-      elements: [{
-        type: "panel",
-        elements: [{
-          type: "radiogroup",
-          choices: [
-            "Married",
-            "In a registered relationship",
-            "Living with my partner",
-            "Widowed",
-            "Single"
-          ],
-          name: "maritalstatus_c",
-          title: " "
-        }],
-        name: "panel13",
-        title: "What is your marital status?"
-      }],
-      name: "page1"
-    }, {
-      elements: [{
-        type: "panel",
-        elements: [{
-          type: "panel",
-          elements: [{
-            type: "radiogroup",
-            choices: [{
-              value: "1",
-              text: "Yes"
-            }, {
-              value: "0",
-              text: "No"
-            }],
-            colCount: 2,
-            isRequired: true,
-            name: "member_receives_income_from_employment",
-            title: " "
-          }, {
-            type: "checkbox",
-            name: "member_type_of_employment",
-            visible: false,
-            visibleIf: "{member_receives_income_from_employment} =1",
-            title: "  ",
-            isRequired: true,
-            choices: [
-              "Self-employed",
-              "Other types of employment"
-            ]
-          }],
-          name: "panel2",
-          title: "You"
-        }, {
-          type: "panel",
-          elements: [{
-            type: "radiogroup",
-            choices: [{
-              value: "1",
-              text: "Yes"
-            }, {
-              value: "0",
-              text: "No"
-            }],
-            colCount: 2,
-            isRequired: true,
-            name: "partner_receives_income_from_employment",
-            title: " "
-          }, {
-            type: "checkbox",
-            name: "partner_type_of_employment",
-            visible: false,
-            visibleIf: "{partner_receives_income_from_employment} =1",
-            title: " ",
-            isRequired: true,
-            choices: [
-              "Self-employed",
-              "Other types of employment"
-            ]
-          }],
-          name: "panel1",
-          startWithNewLine: false,
-          title: "Your Partner",
-          visibleIf:
-            "{maritalstatus_c} = 'Married' or {maritalstatus_c} = 'In a registered relationship' or {maritalstatus_c} = 'Living with my partner'"
-        }],
-        name: "panel5",
-        title: "Do you and/or your partner currently receive income from employment?"
-      }],
-      name: "page2"
-    }, {
-      elements: [{
-        type: "panel",
-        elements: [{
-          type: "panel",
-          elements: [{
-            type: "paneldynamic",
-            minPanelCount: 1,
-            name: "member_array_employer_names",
-            valueName: "member_array_employer",
-            title: "Enter information about your employers",
-            panelAddText: "Add another employer",
-            panelCount: 1,
-            templateElements: [{
-              type: "text",
-              name: "member_employer_name",
-              valueName: "name",
-              title: "Employer name"
-            }]
-          }],
-          name: "panel2",
-          title: "You",
-          visible: false,
-          visibleIf: "{member_type_of_employment} contains 'Other types of employment'"
-        }, {
-          type: "panel",
-          elements: [{
-            type: "paneldynamic",
-            minPanelCount: 1,
-            name: "partner_array_employer_names",
-            valueName: "partner_array_employer",
-            title: "Enter information about employers of your partner",
-            panelAddText: "Add another employer",
-            panelCount: 1,
-            templateElements: [{
-              type: "text",
-              name: "partner_employer_name",
-              valueName: "name",
-              title: "Employer name"
-            }]
-          }],
-          name: "panel8",
-          startWithNewLine: false,
-          title: "Your Partner",
-          visible: false,
-          visibleIf:
-            "{partner_type_of_employment} contains 'Other types of employment'"
-        }],
-        name: "panel6",
-        title: "Employers"
-      }],
-      name: "page3.1",
-      visible: false,
-      visibleIf:
-        "{member_type_of_employment} contains 'Other types of employment' or {partner_type_of_employment} contains 'Other types of employment'"
-    }, {
-      elements: [{
-        type: "panel",
-        elements: [{
-          type: "panel",
-          elements: [{
-            type: "paneldynamic",
-            renderMode: "progressTop",
-            allowAddPanel: false,
-            allowRemovePanel: false,
-            name: "member_array_employer_info",
-            title: "Your employers",
-            valueName: "member_array_employer",
-            panelCount: 1,
-            templateElements: [{
-              type: "panel",
-              name: "panel_member_employer_address",
-              title: "Contacts",
-              elements: [{
-                type: "text",
-                name: "member_employer_address",
-                valueName: "address",
-                title: "Address:"
-              }, {
-                type: "text",
-                name: "member_employer_phone",
-                valueName: "phone",
-                title: "Phone number:"
-              }, {
-                type: "text",
-                name: "member_employer_abn",
-                valueName: "abn",
-                title: "ABN:"
-              }]
-            }, {
-              type: "panel",
-              name: "panel_member_employer_role",
-              title: "Are you a full time worker?",
-              elements: [{
-                type: "radiogroup",
-                choices: [
-                  "Full-time",
-                  "Part-time",
-                  "Casual",
-                  "Seasonal"
-                ],
-                name: "member_employer_role",
-                title: " ",
-                valueName: "role"
-              }]
-            }, {
-              type: "panel",
-              name: "panel_member_employer_hours_work",
-              title: "How many hours do you work?",
-              elements: [{
-                type: "text",
-                inputType: "number",
-                name: "member_employer_hours_worked",
-                valueName: "hours_worked",
-                title: "Hours:"
-              }, {
-                type: "dropdown",
-                name: "member_employer_hours_worked_frequency",
-                title: "Work frequency:",
-                valueName: "hours_worked_frequency",
-                startWithNewLine: false,
-                defaultValue: "Day",
-                choices: [
-                  "Day",
-                  "Week",
-                  "Fortnight",
-                  "Month",
-                  "Year"
-                ]
-              }]
-            }, {
-              type: "panel",
-              name: "panel_member_employer_income",
-              title: "What is your income?",
-              elements: [{
-                type: "text",
-                inputType: "number",
-                name: "member_employer_income",
-                valueName: "income",
-                title: "Income:"
-              }, {
-                type: "dropdown",
-                name: "member_employer_income_frequency",
-                title: "Income frequency:",
-                valueName: "income_frequency",
-                startWithNewLine: false,
-                defaultValue: "Month",
-                choices: [
-                  "Day",
-                  "Week",
-                  "Fortnight",
-                  "Month",
-                  "Year"
-                ]
-              }]
-            }],
-          templateTitle: "Employer name: {panel.name}"
-        }],
-        name: "panel17",
-        title: "You",
-        visibleIf: "{member_type_of_employment} contains 'Other types of employment'"
-      }, {
-        type: "panel",
-        elements: [{
-          type: "paneldynamic",
-          renderMode: "progressTop",
-          allowAddPanel: false,
-          allowRemovePanel: false,
-          name: "partner_array_employer_info",
-          title: "Employers",
-          valueName: "partner_array_employer",
-          panelCount: 1,
-          templateElements: [{
-            type: "panel",
-            name: "panel_partner_employer_address",
-            title: "Contacts",
-            elements: [{
-              type: "text",
-              name: "partner_employer_address",
-              valueName: "address",
-              title: "Address:"
-            }, {
-              type: "text",
-              name: "partner_employer_phone",
-              valueName: "phone",
-              title: "Phone number:"
-            }, {
-              type: "text",
-              name: "partner_employer_abn",
-              valueName: "abn",
-              title: "ABN:"
-            }]
-          }, {
-            type: "panel",
-            name: "panel_partner_employer_role",
-            title: "Are you a full time worker?",
-            elements: [{
-              type: "radiogroup",
-              choices: [
-                "Full-time",
-                "Part-time",
-                "Casual",
-                "Seasonal"
-              ],
-              name: "partner_employer_role",
-              title: "Your role",
-              valueName: "role"
-            }]
-          }, {
-            type: "panel",
-            name: "panel_partner_employer_hours_work",
-            title: "How many hours do you work?",
-            elements: [{
-              type: "text",
-              inputType: "number",
-              name: "partner_employer_hours_worked",
-              valueName: "hours_worked",
-              title: "Hours:"
-            }, {
-              type: "dropdown",
-              name: "partner_employer_hours_worked_frequency",
-              valueName: "hours_worked_frequency",
-              title: "Work frequency:",
-              startWithNewLine: false,
-              defaultValue: "Day",
-              choices: [
-                "Day",
-                "Week",
-                "Fortnight",
-                "Month",
-                "Year"
-              ]
-            }]
-          }, {
-            type: "panel",
-            name: "panel_partner_employer_income",
-            title: "What is your income?",
-            elements: [{
-              type: "text",
-              inputType: "number",
-              name: "partner_employer_income",
-              valueName: "income",
-              title: "Income:"
-            }, {
-              type: "dropdown",
-              name: "partner_employer_income_frequency",
-              valueName: "income_frequency",
-              title: "Income frequency:",
-              startWithNewLine: false,
-              defaultValue: "Month",
-              choices: [
-                "Day",
-                "Week",
-                "Fortnight",
-                "Month",
-                "Year"
-              ]
-            }]
-          }],
-          templateTitle: "Employer name: {panel.name}"
-        }],
-        name: "panel18",
-        startWithNewLine: false,
-        title: "You partner",
-        visibleIf: "{partner_type_of_employment} contains 'Other types of employment'"
-      }],
-      name: "panel16",
-      title: "Enter information about your employers"
-    }],
-    name: "page3.2",
-    visibleIf:
-      "{member_type_of_employment} contains 'Other types of employment' or {partner_type_of_employment} contains 'Other types of employment'"
-  }, {
-    elements: [{
-      type: "panel",
-      elements: [{
-        type: "panel",
-        elements: [{
-          type: "radiogroup",
-          choices: [{
-            value: "1",
-            text: "Yes"
-          }, {
-            value: "0",
-            text: "No"
-          }],
-          colCount: 2,
-          isRequired: true,
-          name: "member_receive_fringe_benefits",
-          title: " "
-        }, {
-          type: "panel",
-          elements: [{
-            type: "text",
-            name: "member_fringe_benefits_type"
-          }, {
-            type: "text",
-            name: "member_fringe_benefits_value"
-          }, {
-            type: "radiogroup",
-            choices: ["Grossed up", "Not grossed up"],
-            name: "member_fringe_benefits_grossing"
-          }],
-          name: "panel11",
-          visible: false,
-          visibleIf: "{member_receive_fringe_benefits} = 1"
-        }],
-        name: "panel2",
-        title: "You",
-        visible: false,
-        visibleIf: "{member_type_of_employment} contains 'Other types of employment'"
-      }, {
-        type: "panel",
-        elements: [{
-          type: "radiogroup",
-          choices: [{
-            value: "1",
-            text: "Yes"
-          }, {
-            value: "0",
-            text: "No"
-          }],
-          colCount: 2,
-          isRequired: true,
-          name: "partner_receive_fringe_benefits",
-          title: " "
-        }, {
-          type: "panel",
-          elements: [{
-            type: "text",
-            name: "partner_fringe_benefits_type"
-          }, {
-            type: "text",
-            name: "partner_fringe_benefits_value"
-          }, {
-            type: "radiogroup",
-            choices: ["Grossed up", "Not grossed up"],
-            name: "partner_fringe_benefits_grossing"
-          }],
-          name: "panel12",
-          visible: false,
-          visibleIf: "{partner_receive_fringe_benefits} = 1"
-        }],
-        name: "panel1",
-        startWithNewLine: false,
-        title: "Your Partner",
-        visible: false,
-        visibleIf: "{partner_type_of_employment} contains 'Other types of employment'"
-      }],
-      name: "panel9",
-      title: "Do any of your employers provide you with fringe benefits?"
-    }],
-      name: "page4",
-      visible: false,
-      visibleIf:
-        "{member_type_of_employment} contains 'Other types of employment' or {partner_type_of_employment} contains 'Other types of employment'"
-    }, {
-      elements: [{
-        type: "panel",
-        elements: [{
-          type: "panel",
-          elements: [{
-            type: "radiogroup",
-            choices: [{
-              value: "1",
-              text: "Yes"
-            }, {
-              value: "0",
-              text: "No"
-            }],
-            colCount: 2,
-            isRequired: true,
-            name: "member_seasonal_intermittent_or_contract_work",
-            title: " "
-          }],
-          name: "panel2",
-          title: "You",
-          visible: false,
-          visibleIf: "{member_receives_income_from_employment} = 1"
-        }, {
-          type: "panel",
-          elements: [{
-            type: "radiogroup",
-            choices: [{
-              value: "1",
-              text: "Yes"
-            }, {
-              value: "0",
-              text: "No"
-            }],
-            colCount: 2,
-            isRequired: true,
-            name: "partner_seasonal_intermittent_or_contract_work",
-            title: " "
-          }],
-          name: "panel1",
-          startWithNewLine: false,
-          title: "Your Partner",
-          visible: false,
-          visibleIf: "{partner_receives_income_from_employment} =1 "
-        }],
-        name: "panel10",
-        title: "In the last 6 months, have you done any seasonal, intermittent or contract work?"
-      }],
-      name: "page5",
-      visible: false,
-      visibleIf: "{member_receives_income_from_employment} = 1 or {partner_receives_income_from_employment} =1 "
-    }],
-    requiredText: "",
-    showQuestionNumbers: "off",
-    storeOthersAsComment: false
-  }
+  name: "ikt minimal standard survey",
+  json:  {
+    "title": "Aviation Cybersecurity",
+    "description": "Based on the IKT Minimal Standard",
+    "pages": [
+     {
+      "name": "Asset Management (ID.AM)",
+      "elements": [
+       {
+        "type": "rating",
+        "name": "ID.AM-1",
+        "title": "ID.AM-1: Draw up an inventory-taking process which ensures that you have a complete inventory of all your ICT assets at all times.",
+        "isRequired": false,
+        "rateCount": 6,
+        "rateMin": 0,
+        "minRateDescription": "(Incomplete)",
+        "maxRateDescription": "(Complete)"
+       },
+       {
+        "type": "rating",
+        "name": "ID.AM-3",
+        "title": "ID.AM-3: Catalogue all of your internal communication and data flows.",
+        "isRequired": false,
+        "rateCount": 6,
+        "rateMin": 0,
+        "minRateDescription": "(Incomplete)",
+        "maxRateDescription": "(Complete)"
+       },
+       {
+        "type": "rating",
+        "name": "ID.AM-2",
+        "title": "ID.AM-2: Produce an inventory of all of the software platforms/licences and applications within your organisation.",
+        "isRequired": false,
+        "rateCount": 6,
+        "rateMin": 0,
+        "minRateDescription": "(Incomplete)",
+        "maxRateDescription": "(Complete)"
+       },
+       {
+        "type": "rating",
+        "name": "ID.AM-4",
+        "title": "ID.AM-4: Catalogue all external ICT systems that are relevant to your organisation.",
+        "isRequired": false,
+        "rateCount": 6,
+        "rateMin": 0,
+        "minRateDescription": "(Incomplete)",
+        "maxRateDescription": "(Complete)"
+       },
+       {
+        "type": "rating",
+        "name": "ID.AM-5",
+        "title": "ID.AM-5: Resources (e.g., hardware, devices, data, time, personnel, and software) are prioritized based on their classification, criticality, and business value.",
+        "isRequired": false,
+        "rateCount": 6,
+        "rateMin": 0,
+        "minRateDescription": "(Incomplete)",
+        "maxRateDescription": "(Complete)"
+       },
+       {
+        "type": "rating",
+        "name": "ID.AM-6",
+        "title": "ID.AM-6: Cybersecurity roles and responsibilities for the entire workforce and third-party stakeholders (e.g., suppliers, customers, partners) are established.",
+        "isRequired": false,
+        "rateCount": 6,
+        "rateMin": 0,
+        "minRateDescription": "(Incomplete)",
+        "maxRateDescription": "(Complete)"
+       }
+      ],
+      "title": "Asset Management (ID.AM)",
+      "description": "The data, personnel, devices, systems, and facilities that enable the organization to achieve business purposes are identified and managed consistent with their relative importance to business objectives and the organization's risk strategy."
+     },
+     {
+      "name": "page1",
+      "elements": [
+       {
+        "type": "rating",
+        "name": "ID.BE-1",
+        "title": "ID.BE-1: Identify, document and communicate the exact role of your business within the (critical) supply chain.",
+        "isRequired": false,
+        "rateCount": 6,
+        "rateMin": 0,
+        "minRateDescription": "(Incomplete)",
+        "maxRateDescription": "(Complete)"
+       },
+       {
+        "type": "rating",
+        "name": "ID.BE-2",
+        "title": "ID.BE-2: The importance of the organisation as a critical infrastructure operator, and its position within the critical sector, is identified and communicated.",
+        "isRequired": false,
+        "rateCount": 6,
+        "rateMin": 0,
+        "minRateDescription": "(Incomplete)",
+        "maxRateDescription": "(Complete)"
+       },
+       {
+        "type": "rating",
+        "name": "ID.BE-3",
+        "title": "ID.BE-3: Objectives, tasks and activities within the organisation are prioritised and rated.",
+        "isRequired": false,
+        "rateCount": 6,
+        "rateMin": 0,
+        "minRateDescription": "(Incomplete)",
+        "maxRateDescription": "(Complete)"
+       },
+       {
+        "type": "rating",
+        "name": "ID.BE-4",
+        "title": "ID.BE-4: Dependencies and critical functions for delivery of critical services are established.",
+        "isRequired": false,
+        "rateCount": 6,
+        "rateMin": 0,
+        "minRateDescription": "(Incomplete)",
+        "maxRateDescription": "(Complete)"
+       },
+       {
+        "type": "rating",
+        "name": "ID.BE-5",
+        "title": "ID.BE-5: Resilience requirements to support delivery of critical services are established for all operating states (e.g. under duress/attack, during recovery, normal operations).",
+        "isRequired": false,
+        "rateCount": 6,
+        "rateMin": 0,
+        "minRateDescription": "(Incomplete)",
+        "maxRateDescription": "(Complete)"
+       }
+      ],
+      "title": "Business Environment (ID.BE)",
+      "description": "The business objectives, tasks and activities are rated and prioritised. This information is used as a basis for allocating responsibilities."
+     },
+     {
+      "name": "page2",
+      "elements": [
+       {
+        "type": "rating",
+        "name": "ID.GV-1",
+        "title": "ID.GV-1: Organizational cybersecurity policy is established and communicated.",
+        "isRequired": false,
+        "rateCount": 6,
+        "rateMin": 0,
+        "minRateDescription": "(Incomplete)",
+        "maxRateDescription": "(Complete)"
+       },
+       {
+        "type": "rating",
+        "name": "ID.GV-2",
+        "title": "ID.GV-2: Information security roles and responsibilities are coordinated with internal roles (e.g. those in risk management) and external partners.",
+        "isRequired": false,
+        "rateCount": 6,
+        "rateMin": 0,
+        "minRateDescription": "(Incomplete)",
+        "maxRateDescription": "(Complete)"
+       },
+       {
+        "type": "rating",
+        "name": "ID.GV-3",
+        "title": "ID.GV-3: Ensure that your organisation complies with all statutory and regulatory cybersecurity requirements, including those applicable to data protection.",
+        "isRequired": false,
+        "rateCount": 6,
+        "rateMin": 0,
+        "minRateDescription": "(Incomplete)",
+        "maxRateDescription": "(Complete)"
+       },
+       {
+        "type": "rating",
+        "name": "ID.GV-4",
+        "title": "ID.GV-4: Ensure that cybersecurity risks are embedded in business-wide risk management structures.",
+        "isRequired": false,
+        "rateCount": 6,
+        "rateMin": 0,
+        "minRateDescription": "(Incomplete)",
+        "maxRateDescription": "(Complete)"
+       }
+      ],
+      "title": "Governance (ID.GV)",
+      "description": "Governance determines responsibilities, monitors, and ensures compliance with regulatory, legal and operational requirements from the business environment."
+     },
+     {
+      "name": "page3",
+      "elements": [
+       {
+        "type": "rating",
+        "name": "ID.RA-1",
+        "title": "ID.RA-1: Identify the (technical) vulnerabilities of your assets, and document them.",
+        "isRequired": false,
+        "rateCount": 6,
+        "rateMin": 0,
+        "minRateDescription": "(Incomplete)",
+        "maxRateDescription": "(Complete)"
+       },
+       {
+        "type": "rating",
+        "name": "ID.RA-2",
+        "title": "ID.RA-2: Share intelligence regularly in fora and other bodies to stay up to date about cybersecurity threats.",
+        "isRequired": false,
+        "rateCount": 6,
+        "rateMin": 0,
+        "minRateDescription": "(Incomplete)",
+        "maxRateDescription": "(Complete)"
+       },
+       {
+        "type": "rating",
+        "name": "ID.RA-3",
+        "title": "ID.RA-3: Identify and document internal and external cybersecurity threats.",
+        "isRequired": false,
+        "rateCount": 6,
+        "rateMin": 0,
+        "minRateDescription": "(Incomplete)",
+        "maxRateDescription": "(Complete)"
+       },
+       {
+        "type": "rating",
+        "name": "ID.RA-4",
+        "title": "ID.RA-4: Identify the possible business impacts of cybersecurity threats, and calculate the probability of their occurring.",
+        "isRequired": false,
+        "rateCount": 6,
+        "rateMin": 0,
+        "minRateDescription": "(Incomplete)",
+        "maxRateDescription": "(Complete)"
+       },
+       {
+        "type": "rating",
+        "name": "ID.RA-5",
+        "title": "ID.RA-5: Rate the risks to your organisation based on threats, vulnerabilities, impacts (on business activity) and probabilities.",
+        "isRequired": false,
+        "rateCount": 6,
+        "rateMin": 0,
+        "minRateDescription": "(Incomplete)",
+        "maxRateDescription": "(Complete)"
+       },
+       {
+        "type": "rating",
+        "name": "ID.RA-6",
+        "title": "ID.RA-6: Define possible immediate responses should a risk occur, and prioritise these measures.",
+        "isRequired": false,
+        "rateCount": 6,
+        "rateMin": 0,
+        "minRateDescription": "(Incomplete)",
+        "maxRateDescription": "(Complete)"
+       }
+      ],
+      "title": "Risk Assessment (ID.RA)",
+      "description": "The organisation understands the effects of cybersecurity risks on business operations, assets and individuals, including reputational risks."
+     }
+    ]
+   }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
 };
 
 export const survey2Results = [
